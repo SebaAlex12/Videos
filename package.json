@@ -1,5 +1,5 @@
 {
-  "name": "footballmanager",
+  "name": "videostreamers",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -11,7 +11,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-  "author": "",
+  "author": "Sebastian Kawka",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
