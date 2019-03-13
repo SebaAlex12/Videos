@@ -1,5 +1,5 @@
-# Project Developer Tools
+# Project Video Streamers
 ## Webpage
 login: franek@wp.pl
 password: 123456
-https://skdevtools.azurewebsites.net
+https://videos12.herokuapp.com/
