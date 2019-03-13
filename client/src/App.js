@@ -13,6 +13,8 @@ import Landing from "./components/layout/Landing";
 import Login from "./components/auth/Login";
 // import Register from "./components/auth/Register";
 
+import YoutubeMain from "./components/youtube/YoutubeMain";
+
 import "./App.scss";
 
 // Check for token
@@ -44,6 +46,7 @@ class App extends Component {
               <Route exact path="/dashboard" component={Dashboard} />
               {/* <Route exact path="/register" component={Register} /> */}
               <Route exact path="/login" component={Login} />
+              <Route exact path="/youtube" component={YoutubeMain} />
             </div>
             <Footer />
           </div>
