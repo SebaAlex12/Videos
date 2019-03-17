@@ -12,6 +12,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Landing from "./components/layout/Landing";
 import Login from "./components/auth/Login";
 // import Register from "./components/auth/Register";
+import SettingMain from "./components/setting/SettingMain";
 
 import YoutubeMain from "./components/youtube/YoutubeMain";
 
@@ -47,6 +48,7 @@ class App extends Component {
               {/* <Route exact path="/register" component={Register} /> */}
               <Route exact path="/login" component={Login} />
               <Route exact path="/youtube" component={YoutubeMain} />
+              <Route exact path="/setting" component={SettingMain} />
             </div>
             <Footer />
           </div>

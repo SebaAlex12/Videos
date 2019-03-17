@@ -25,9 +25,7 @@ class YoutubeList extends Component {
 
     return (
       <div>
-        <div className="container">
-          <div className="row">{videosContent}</div>
-        </div>
+        <div className="row">{videosContent}</div>
       </div>
     );
   }

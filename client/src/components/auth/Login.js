@@ -51,9 +51,7 @@ class Login extends Component {
           <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Zaloguj się</h1>
-              <p className="lead text-center">
-                Zaloguj się do narzędziownika
-              </p>
+              <p className="lead text-center">Zaloguj się do panelu</p>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   placeholder="Adres email"

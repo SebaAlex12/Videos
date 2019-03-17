@@ -5,3 +5,6 @@ export const GET_USER_BY_ID = "GET_USER_BY_ID";
 export const VIDEO_LOADING = "VIDEO_LOADING";
 
 export const GET_YOUTUBE_VIDEOS = "GET_YOUTUBE_VIDEOS";
+
+export const GET_SETTINGS = "GET_SETTINGS";
+export const UPDATE_SETTINGS = "UPDATE_SETTINGS";

@@ -6,9 +6,13 @@ import { connect } from "react-redux";
 class YoutubeMain extends Component {
   render() {
     return (
-      <div>
-        <YoutubeSearchBar />
-        <YoutubeList />
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-12 col-md-12">
+            <YoutubeSearchBar />
+            <YoutubeList />
+          </div>
+        </div>
       </div>
     );
   }

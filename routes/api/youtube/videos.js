@@ -19,7 +19,7 @@ router.post(
 
     const params = {
       part: "snippet",
-      maxResults: 15,
+      maxResults: req.body.maxResults,
       key: YOUTUBE_KEY,
       q: req.body.term
     };
