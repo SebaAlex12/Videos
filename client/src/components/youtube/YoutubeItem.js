@@ -8,7 +8,7 @@ class YoutubeItem extends Component {
 
   render() {
     const { video } = this.props;
-    const videoSrc = `http://youtube.com/embed/${video.id.videoId}`;
+    const videoSrc = `https://youtube.com/embed/${video.id.videoId}`;
 
     return (
       <div

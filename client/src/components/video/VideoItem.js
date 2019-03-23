@@ -11,7 +11,7 @@ class VideoItem extends Component {
 
   render() {
     const { video } = this.props;
-    const videoSrc = `http://youtube.com/embed/${video.videoKey}`;
+    const videoSrc = `https://youtube.com/embed/${video.videoKey}`;
 
     return (
       <div className="col-lg-4 col-md-4 mb-4" style={{ position: "relative" }}>
