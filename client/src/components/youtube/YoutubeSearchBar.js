@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import TextFieldGroup from "../common/TextFieldGroup";
-import { youtubeList } from "../../actions/youtubeActions";
-
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+
+import TextFieldGroup from "../common/TextFieldGroup";
+import { youtubeList } from "../../actions/youtubeActions";
 
 class YoutubeSearchBar extends Component {
   constructor(props) {
@@ -11,15 +11,20 @@ class YoutubeSearchBar extends Component {
     const { youtubeSettings } = props;
     // console.log(youtubeSettings);
     this.state = {
-      term: youtubeSettings.term ? youtubeSettings.term : "songs",
-      maxResults: youtubeSettings.amount ? youtubeSettings.amount : 15,
-      termUserVisible: youtubeSettings.visible.term,
-      amountUserVisible: youtubeSettings.visible.amount
+      // term: youtubeSettings.term ? youtubeSettings.term : "songs",
+      // maxResults: youtubeSettings.amount ? youtubeSettings.amount : 15,
+      // termUserVisible: youtubeSettings.visible.term,
+      // amountUserVisible: youtubeSettings.visible.amount
+      term: "songs",
+      maxResults: 5,
+      termUserVisible: true,
+      amountUserVisible: true
       // errors: {}
     };
     this.onChange = this.onChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
-    console.log(this.state);
+
+    // console.log(this.state);
   }
 
   componentDidMount() {
@@ -29,6 +34,7 @@ class YoutubeSearchBar extends Component {
       termUserVisible: this.state.termUserVisible,
       amountUserVisible: this.state.amountUserVisible
     };
+
     this.props.youtubeList(searchData);
   }
 
@@ -89,7 +95,7 @@ YoutubeSearchBar.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  youtubeSettings: state.setting.settings[0].youtube
+  // youtubeSettings: state.setting.settings[0].youtube
 });
 
 export default connect(

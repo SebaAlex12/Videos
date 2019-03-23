@@ -7,6 +7,7 @@ const path = require("path");
 const users = require("./routes/api/users");
 const youtubeVideos = require("./routes/api/youtube/videos");
 const settings = require("./routes/api/settings");
+const videos = require("./routes/api/videos");
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.listen(port, () => console.log(`server running on port ${port}`));
 app.use("/api/users", users);
 app.use("/api/youtube/videos", youtubeVideos);
 app.use("/api/settings", settings);
+app.use("/api/videos", videos);
 
 // serv assets if in production
 if (process.env.NODE_ENV === "production") {

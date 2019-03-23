@@ -38,9 +38,7 @@ router.post(
           term: req.body.termUserVisible,
           amount: req.body.amountUserVisible
         },
-        childrenProtection: req.body.childrenProtectionOn
-          ? req.body.childrenProtectionOn
-          : false,
+        childrenProtection: req.body.childrenProtectionOn,
         childrenSettings: {
           visible: {
             term: req.body.termChildrenVisible,
@@ -51,6 +49,7 @@ router.post(
     };
     console.log(req.body.userId);
     Setting.findOne({ userId: req.body.userId }).then(setting => {
+      console.log(setting);
       if (setting) {
         console.log("findoneandreplace");
         console.log(settData);

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
+import { getSettings } from "./actions/settingActions";
 import { Provider } from "react-redux";
 import store from "./store";
 
@@ -11,10 +12,11 @@ import Footer from "./components/layout/Footer";
 import Dashboard from "./components/dashboard/Dashboard";
 import Landing from "./components/layout/Landing";
 import Login from "./components/auth/Login";
-// import Register from "./components/auth/Register";
+import Register from "./components/auth/Register";
 import SettingMain from "./components/setting/SettingMain";
 
 import YoutubeMain from "./components/youtube/YoutubeMain";
+import VideoMain from "./components/video/VideoMain";
 
 import "./App.scss";
 
@@ -26,6 +28,9 @@ if (localStorage.jwtToken) {
   const decoded = jwt_decode(localStorage.jwtToken);
   // Set user and Authenticate
   store.dispatch(setCurrentUser(decoded));
+
+  // Set user Settings
+  store.dispatch(getSettings());
 
   // check for expire token
   const currentTime = Date.now() / 1000;
@@ -45,10 +50,11 @@ class App extends Component {
             <div className="page-center-box">
               <Route exact path="/" component={Landing} />
               <Route exact path="/dashboard" component={Dashboard} />
-              {/* <Route exact path="/register" component={Register} /> */}
+              <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/youtube" component={YoutubeMain} />
               <Route exact path="/setting" component={SettingMain} />
+              <Route exact path="/videos" component={VideoMain} />
             </div>
             <Footer />
           </div>

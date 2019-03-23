@@ -62,10 +62,6 @@ class SettingForm extends Component {
     // console.log(this.state);
   }
 
-  // componentWillMount() {
-  //   this.props.getSettings();
-  // }
-
   render() {
     return (
       <div className="post-form mb-3">

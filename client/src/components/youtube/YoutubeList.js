@@ -5,11 +5,8 @@ import Spinner from "../common/spinner";
 
 class YoutubeList extends Component {
   render() {
-    // console.log(this.props.videos);
     const { videos } = this.props;
     let videosContent;
-
-    // console.log(videos);
 
     if (videos === null || videos.length === 0) {
       videosContent = <Spinner />;
@@ -18,10 +15,6 @@ class YoutubeList extends Component {
         <YoutubeItem key={video.etag} video={video} />
       ));
     }
-
-    // this.props.videos.map(video => {
-    //   console.log(video);
-    // });
 
     return (
       <div>

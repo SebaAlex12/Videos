@@ -15,7 +15,8 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const YOUTUBE_KEY = "AIzaSyCd6lBCGyrYYfG5xSwD2WWi7zdfVQDiS_0";
+    // const YOUTUBE_KEY = "AIzaSyCd6lBCGyrYYfG5xSwD2WWi7zdfVQDiS_0";
+    const YOUTUBE_KEY = "AIzaSyCG7SyjF4lB1Ekpoq-AGZ4uU0nqngR-xgo";
 
     const params = {
       part: "snippet",
@@ -29,7 +30,6 @@ router.post(
     axios
       .get("https://www.googleapis.com/youtube/v3/search", { params: params })
       .then(response => {
-        // console.log(req);
         response.data.items.map(item => {
           videos.push(item);
         });

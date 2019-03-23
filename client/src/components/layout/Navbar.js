@@ -20,6 +20,11 @@ class Navbar extends Component {
           </Link>
         </li>
         <li className="nav-item">
+          <Link className="nav-link" to="/videos">
+            Videos
+          </Link>
+        </li>
+        <li className="nav-item">
           <Link className="nav-link" to="/setting">
             Ustawienia
           </Link>
