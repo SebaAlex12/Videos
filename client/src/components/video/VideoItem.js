@@ -21,6 +21,7 @@ class VideoItem extends Component {
         >
           X
         </div>
+        {console.log(videoSrc)}
         <div className="video">
           <iframe
             target="_blank"
