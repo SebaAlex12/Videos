@@ -43,19 +43,12 @@ app.use("/api/youtube/videos", youtubeVideos);
 app.use("/api/settings", settings);
 app.use("/api/videos", videos);
 
-// Set up a whitelist of domains that can render us in an iframe
-
-var XFRAME_WHITELIST = ["https://www.youtube.com"];
-
 // serv assets if in production
 if (process.env.NODE_ENV === "production") {
   // set static folder
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
-    // If the domain matches, allow iframes from that domain
-    if (XFRAME_WHITELIST.indexOf(req.query.domain) !== -1) {
-      res.header("X-FRAME-OPTIONS", "ALLOW-FROM " + req.query.domain);
-    }
+    res.header("X-FRAME-OPTIONS", "ALLOW-FROM https://www.youtube.com");
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
