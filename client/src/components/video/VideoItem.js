@@ -22,7 +22,11 @@ class VideoItem extends Component {
           X
         </div>
         <div className="video">
-          <iframe allowFullScreen="allowFullScreen" src={videoSrc} />
+          <iframe
+            target="_blank"
+            allowFullScreen="allowFullScreen"
+            src={videoSrc}
+          />
         </div>
         <div className="title" style={{ color: "#fff" }}>
           {video.title}

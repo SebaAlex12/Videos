@@ -15,7 +15,11 @@ class YoutubeItem extends Component {
         className="col-lg-4 col-md-4 mb-4 text-center"
         style={{ position: "relative" }}
       >
-        <iframe allowFullScreen="allowFullScreen" src={videoSrc} />
+        <iframe
+          target="_blank"
+          allowFullScreen="allowFullScreen"
+          src={videoSrc}
+        />
         <div className="title" style={{ color: "#fff", minHeight: "80px" }}>
           {video.snippet.title}
         </div>
