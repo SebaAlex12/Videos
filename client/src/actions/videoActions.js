@@ -1,11 +1,12 @@
 import {
   GET_ERRORS,
-  ADD_VIDEO_FAVOURITE,
+  ADD_VIDEO_USER_FAVOURITE,
   GET_VIDEO_USER_CATEGORIES,
   GET_VIDEO_USER_CATEGORY,
   ADD_VIDEO_USER_CATEGORY,
-  GET_VIDEOS,
-  DELETE_VIDEO
+  GET_VIDEOS_USER,
+  GET_VIDEO_USER,
+  DELETE_VIDEO_USER
 } from "./types";
 import axios from "axios";
 
@@ -14,14 +15,31 @@ export const getVideos = () => dispatch => {
     .get("/api/videos")
     .then(res =>
       dispatch({
-        type: GET_VIDEOS,
+        type: GET_VIDEOS_USER,
         payload: res.data
       })
     )
     .catch(err =>
       dispatch({
-        type: GET_VIDEOS,
+        type: GET_ERRORS,
         payload: null
+      })
+    );
+};
+
+export const getVideo = id => dispatch => {
+  axios
+    .get(`/api/videos/current/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_VIDEO_USER,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
       })
     );
 };
@@ -31,7 +49,7 @@ export const addVideoFavourite = data => dispatch => {
     .post("/api/videos/favourite", data)
     .then(res =>
       dispatch({
-        type: ADD_VIDEO_FAVOURITE,
+        type: ADD_VIDEO_USER_FAVOURITE,
         payload: res.data
       })
     )
@@ -49,7 +67,7 @@ export const deleteVideo = id => dispatch => {
     .post(`api/videos/delete/${id}`)
     .then(res =>
       dispatch({
-        type: DELETE_VIDEO,
+        type: DELETE_VIDEO_USER,
         payload: id
       })
     )

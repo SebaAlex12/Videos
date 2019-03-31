@@ -17,6 +17,7 @@ import SettingMain from "./components/setting/SettingMain";
 
 import YoutubeMain from "./components/youtube/YoutubeMain";
 import VideoMain from "./components/video/VideoMain";
+import VideoItemDelete from "./components/video/VideoItemDelete";
 
 import "./App.scss";
 
@@ -55,6 +56,11 @@ class App extends Component {
               <Route exact path="/youtube" component={YoutubeMain} />
               <Route exact path="/setting" component={SettingMain} />
               <Route exact path="/videos" component={VideoMain} />
+              <Route
+                exact
+                path="/videos/delete/:id"
+                component={VideoItemDelete}
+              />
             </div>
             <Footer />
           </div>

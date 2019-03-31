@@ -9,7 +9,7 @@ class YoutubeSearchBar extends Component {
   constructor(props) {
     super(props);
     const { youtubeSettings } = props;
-    // console.log(youtubeSettings);
+    console.log(youtubeSettings);
     this.state = {
       // term: youtubeSettings.term ? youtubeSettings.term : "songs",
       // maxResults: youtubeSettings.amount ? youtubeSettings.amount : 15,

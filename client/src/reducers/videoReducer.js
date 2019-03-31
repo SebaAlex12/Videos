@@ -1,7 +1,8 @@
 import {
-  ADD_VIDEO_FAVOURITE,
-  GET_VIDEOS,
-  DELETE_VIDEO,
+  ADD_VIDEO_USER_FAVOURITE,
+  GET_VIDEOS_USER,
+  GET_VIDEO_USER,
+  DELETE_VIDEO_USER,
   GET_VIDEO_USER_CATEGORIES,
   ADD_VIDEO_USER_CATEGORY,
   GET_VIDEO_USER_CATEGORY
@@ -16,17 +17,22 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_VIDEOS:
+    case GET_VIDEOS_USER:
       return {
         ...state,
         videos: action.payload
       };
-    case DELETE_VIDEO:
+    case GET_VIDEO_USER:
+      return {
+        ...state,
+        video: action.payload
+      };
+    case DELETE_VIDEO_USER:
       return {
         ...state,
         videos: state.videos.filter(video => video._id !== action.payload)
       };
-    case ADD_VIDEO_FAVOURITE:
+    case ADD_VIDEO_USER_FAVOURITE:
       return {
         ...state,
         videos: [action.payload, ...state.videos]

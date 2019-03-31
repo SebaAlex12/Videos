@@ -57,6 +57,19 @@ router.get(
   }
 );
 
+// @route GET api/videos/current/:id
+// @desc get video by id
+// @access Public
+router.get("/current/:id", (req, res) => {
+  // console.log(req.params.id);
+  // console.log("current video");
+  Video.findById(req.params.id)
+    .then(video => res.json(video))
+    .catch(err =>
+      res.status(404).json({ novideofound: `No video found with id` })
+    );
+});
+
 // @route api/videos/delete:id
 // @desc delete video from videos list
 // @access Public
