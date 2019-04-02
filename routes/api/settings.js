@@ -13,24 +13,28 @@ router.get(
   (req, res) => {
     // console.log(req.user);
     // console.log("get set");
-    Setting.find()
-      .then(settings => res.json(settings))
-      .catch(err =>
-        res.status(404).json({ nosettingsfound: `No settings found` })
-      );
+    if (req.user.settingsId) {
+      Setting.findOne({ _id: req.user.settingsId })
+        .then(settings => res.json(settings))
+        .catch(err =>
+          res.status(404).json({ nosettingsfound: `No settings found` })
+        );
+    } else {
+      res.status(404).json({ nosettingsfound: `No settings found` });
+    }
   }
 );
 
-// @route UPDATE api/settings/update
+// @route UPDATE api/settings/update/:id
 // @desc update settings
 // @access Public
 router.post(
-  `/update/`,
+  `/update/:id`,
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     // prepare all data to save
     const settData = {
-      userId: req.body.userId,
+      // userId: req.body.userId,
       youtube: {
         term: req.body.term,
         amount: req.body.amount,
@@ -47,20 +51,17 @@ router.post(
         }
       }
     };
-    console.log(req.body.userId);
-    Setting.findOne({ userId: req.body.userId }).then(setting => {
-      console.log(setting);
+
+    Setting.findOne({ _id: req.params.id }).then(setting => {
       if (setting) {
-        console.log("findoneandreplace");
-        console.log(settData);
-        Setting.findOneAndReplace({ userId: req.body.userId }, settData)
+        Setting.findOneAndReplace({ _id: req.params.id }, settData)
           .then(data => res.json(data))
           .catch(err => res.json(err));
       } else {
         const insertSetting = new Setting(settData);
         insertSetting
           .save()
-          .then(data => res.json(data))
+          .then(data => res.data(data))
           .catch(err => res.json(err));
       }
     });

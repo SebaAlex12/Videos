@@ -20,6 +20,7 @@ class YoutubeItem extends Component {
         <Link to={`youtube/video/${video.id.videoId}`}>
           <img src={video.snippet.thumbnails.medium.url} />
         </Link>
+
         <div className="title" style={{ color: "#fff", minHeight: "80px" }}>
           {video.snippet.title}
         </div>

@@ -1,9 +1,12 @@
 import axios from "axios";
 import { GET_SETTINGS, UPDATE_SETTINGS, GET_ERRORS } from "./types";
 
-export const getSettings = () => dispatch => {
+export const getSettings = () => (dispatch, getState) => {
+  const state = getState();
+  const { user } = state.auth.user;
+
   axios
-    .get("api/settings")
+    .get("api/settings", user)
     .then(res =>
       dispatch({
         type: GET_SETTINGS,
@@ -12,27 +15,28 @@ export const getSettings = () => dispatch => {
     )
     .catch(err =>
       dispatch({
-        type: GET_SETTINGS,
-        payload: null
+        type: GET_ERRORS,
+        payload: err.response.data
       })
     );
 };
 
 export const updateSettings = data => (dispatch, getState) => {
-  //   console.log("actionCreator");
-  console.log(getState);
-  // axios
-  //   .post(`api/settings/update/`, data)
-  //   .then(res =>
-  //     dispatch({
-  //       type: UPDATE_SETTINGS,
-  //       payload: res.data
-  //     })
-  //   )
-  //   .catch(err =>
-  //     dispatch({
-  //       type: GET_ERRORS,
-  //       payload: err.response.data
-  //     })
-  //   );
+  const state = getState();
+  const { settingsId } = state.auth.user;
+  // console.log(settingsId);
+  axios
+    .post(`api/settings/update/${settingsId}`, data)
+    .then(res =>
+      dispatch({
+        type: UPDATE_SETTINGS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
 };

@@ -14,12 +14,7 @@ export default function(state = initialState, action) {
     case UPDATE_SETTINGS:
       return {
         ...state,
-        settings: [
-          action.payload,
-          ...state.settings.filter(
-            setting => setting.userId !== action.payload._id
-          )
-        ]
+        settings: action.payload
       };
     default:
       return state;

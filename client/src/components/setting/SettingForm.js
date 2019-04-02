@@ -1,36 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+
 import TextFieldGroup from "../common/TextFieldGroup";
-import { updateSettings } from "../../actions/settingActions";
+import { getSettings, updateSettings } from "../../actions/settingActions";
 
 class SettingForm extends Component {
   constructor(props) {
     super(props);
-    const { youtubeSettings } = props;
-    // console.log(youtubeSettings);
+
     this.state = {
       userId: props.userId,
-      term: youtubeSettings.term ? youtubeSettings.term : "songs",
-      amount: youtubeSettings.amount ? youtubeSettings.amount : 15,
-      termUserVisible: youtubeSettings.visible.term
-        ? youtubeSettings.visible.term
-        : false,
-      amountUserVisible: youtubeSettings.visible.amount
-        ? youtubeSettings.visible.amount
-        : false,
-      childrenProtectionOn: youtubeSettings.childrenProtectionOn
-        ? youtubeSettings.childrenProtectionOn
-        : false,
-      childrenProtectionOff: youtubeSettings.childrenProtectionOff
-        ? youtubeSettings.childrenProtectionOff
-        : false,
-      termChildrenVisible: youtubeSettings.childrenSettings.visible.term
-        ? youtubeSettings.childrenSettings.visible.term
-        : false,
-      amountChildrenVisible: youtubeSettings.childrenSettings.visible.amount
-        ? youtubeSettings.childrenSettings.visible.amount
-        : false
-      //   errors: {}
+      term: "songs",
+      amount: 15,
+      termUserVisible: true,
+      amountUserVisible: true,
+      childrenProtectionOn: false,
+      childrenProtectionOff: false,
+      termChildrenVisible: false,
+      amountChildrenVisible: false,
+      errors: {}
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -40,29 +28,66 @@ class SettingForm extends Component {
     e.preventDefault();
 
     const data = {
-      userId: this.state.userId,
-      term: this.state.term,
-      amount: this.state.amount,
-      termUserVisible: this.state.termUserVisible,
-      amountUserVisible: this.state.amountUserVisible,
-      childrenProtectionOn: this.state.childrenProtectionOn,
-      childrenProtectionOff: this.state.childrenProtectionOff,
-      termChildrenVisible: this.state.termChildrenVisible,
+      userId: this.state.userId ? this.state.userId : false,
+      term: this.state.term ? this.state.term : false,
+      amount: this.state.amount ? this.state.amount : false,
+      termUserVisible: this.state.termUserVisible
+        ? this.state.termUserVisible
+        : false,
+      amountUserVisible: this.state.amountUserVisible
+        ? this.state.amountUserVisible
+        : false,
+      childrenProtectionOn: this.state.childrenProtectionOn
+        ? this.state.childrenProtectionOn
+        : false,
+      childrenProtectionOff: this.state.childrenProtectionOff
+        ? this.state.childrenProtectionOff
+        : false,
+      termChildrenVisible: this.state.termChildrenVisible
+        ? this.state.termChildrenVisible
+        : false,
       amountChildrenVisible: this.state.amountChildrenVisible
+        ? this.state.amountChildrenVisible
+        : false
     };
     this.props.updateSettings(data);
   }
 
   onChange(e) {
-    // console.log(e.target.type);
     const value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
-
     this.setState({ [e.target.name]: value });
-    // console.log(this.state);
+  }
+
+  componentDidMount() {
+    this.props.getSettings();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.settings) {
+      console.log(nextProps);
+      const { youtube } = nextProps.settings;
+      this.setState({
+        term: youtube.term,
+        amount: youtube.amount,
+        termUserVisible: true,
+        amountUserVisible: true,
+        childrenProtectionOn: youtube.childrenProtectionOn,
+        childrenProtectionOff: youtube.childrenProtectionOff,
+        termChildrenVisible: youtube.termChildrenVisible,
+        amountChildrenVisible: youtube.amountChildrenVisible
+      });
+    }
   }
 
   render() {
+    // console.log("rener", this.props);
+
+    if (this.props.settings.youtube) {
+    } else {
+      return "loading...";
+    }
+
     return (
       <div className="post-form mb-3">
         <div className="card card-info">
@@ -213,10 +238,11 @@ class SettingForm extends Component {
 
 const mapStateToProps = state => ({
   userId: state.auth.user.id,
-  youtubeSettings: state.setting.settings[0].youtube
+  settings: state.setting.settings,
+  state: state
 });
 
 export default connect(
   mapStateToProps,
-  { updateSettings }
+  { getSettings, updateSettings }
 )(SettingForm);

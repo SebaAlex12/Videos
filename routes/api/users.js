@@ -35,15 +35,9 @@ router.post("/register", (req, res) => {
       errors.email = "Email already exists";
       return res.status(400).json(errors);
     } else {
-      const avatar = gravatar.url(req.body.email, {
-        s: "200",
-        r: "pg",
-        d: "mm"
-      });
       const newUser = new User({
         name: req.body.name,
         email: req.body.email,
-        avatar,
         password: req.body.password
       });
 
@@ -89,7 +83,7 @@ router.post("/login", (req, res) => {
         const payload = {
           id: user.id,
           name: user.name,
-          avatar: user.avatar
+          settingsId: user.settingsId
         };
         // Sign Token
         jwt.sign(
@@ -124,13 +118,14 @@ router.get(
     res.json({
       id: req.user.id,
       name: req.user.name,
-      email: req.user.email
+      email: req.user.email,
+      settingsId: settingsId ? settingsId : null
     });
   }
 );
 
 // @route GET api/users/:id
-// @desc get user id
+// @desc get user by id
 // @access Public
 router.get(
   "/:id",

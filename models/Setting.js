@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const SettingSchema = new Schema({
-  userId: {
-    type: Schema.Types.ObjectId,
-    ref: "users"
-  },
+  // userId: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "users"
+  // },
   youtube: {
     term: {
       type: String,

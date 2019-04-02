@@ -9,7 +9,7 @@ class CategoryItem extends Component {
   };
   render() {
     const { category, currentCategory } = this.props;
-    let className = "btn btn-primary ml-2 mr-2";
+    let className = "btn btn-primary ml-2 mr-2 mb-2";
 
     className += currentCategory._id === category._id ? " btn-success" : "";
 

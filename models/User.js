@@ -4,6 +4,10 @@ const Schema = mongoose.Schema;
 // Create Schema
 
 const UserSchema = new Schema({
+  settingsId: {
+    type: String,
+    default: null
+  },
   name: {
     type: String,
     require: true
@@ -15,9 +19,6 @@ const UserSchema = new Schema({
   password: {
     type: String,
     require: true
-  },
-  avatar: {
-    type: String
   },
   date: {
     type: Date,

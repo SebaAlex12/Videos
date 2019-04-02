@@ -10,7 +10,6 @@ class VideoMain extends Component {
         <div className="row">
           <div className="col-lg-12 col-md-12">
             <CategoryList />
-            {/* <VideoSearchBar /> */}
             <Videos />
           </div>
         </div>

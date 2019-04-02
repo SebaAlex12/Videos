@@ -42,16 +42,6 @@ class Navbar extends Component {
               cursor: "pointer"
             }}
           >
-            <img
-              src={user.avatar}
-              alt={user.name}
-              className="rounded-circle"
-              style={{
-                width: "25px",
-                marginRight: "10px",
-                display: "inlineBlock"
-              }}
-            />
             Wyloguj
           </button>
         </li>
@@ -60,11 +50,11 @@ class Navbar extends Component {
 
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
-        {/* <li className="nav-item">
+        <li className="nav-item">
           <Link className="nav-link" to="/register">
             Rejestracja
           </Link>
-        </li> */}
+        </li>
         <li className="nav-item">
           <Link className="nav-link" to="/login">
             Logowanie

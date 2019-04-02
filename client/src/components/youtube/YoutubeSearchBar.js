@@ -8,13 +8,14 @@ import { youtubeList } from "../../actions/youtubeActions";
 class YoutubeSearchBar extends Component {
   constructor(props) {
     super(props);
-    const { youtubeSettings } = props;
-    // console.log(youtubeSettings);
+
+    const { youtube } = this.props.settings;
+
     this.state = {
-      term: youtubeSettings.term ? youtubeSettings.term : "songs",
-      maxResults: youtubeSettings.amount ? youtubeSettings.amount : 15,
-      termUserVisible: youtubeSettings.visible.term,
-      amountUserVisible: youtubeSettings.visible.amount
+      term: "react redux",
+      maxResults: 45,
+      termUserVisible: true,
+      amountUserVisible: true
       // term: "songs",
       // maxResults: 5,
       // termUserVisible: true,
@@ -34,24 +35,40 @@ class YoutubeSearchBar extends Component {
       termUserVisible: this.state.termUserVisible,
       amountUserVisible: this.state.amountUserVisible
     };
-
     this.props.youtubeList(searchData);
   }
 
   onFormSubmit(e) {
     e.preventDefault();
+
     const searchData = {
       term: this.state.term,
       maxResults: this.state.maxResults,
       termUserVisible: this.state.termUserVisible,
       amountUserVisible: this.state.amountUserVisible
     };
-
     this.props.youtubeList(searchData);
   }
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.settings) {
+  //     const { youtube } = nextProps.settings;
+  //     this.setState({
+  //       term: youtube.term,
+  //       amount: youtube.amount,
+  //       termUserVisible: true,
+  //       amountUserVisible: true,
+  //       childrenProtectionOn: youtube.childrenProtectionOn,
+  //       childrenProtectionOff: youtube.childrenProtectionOff,
+  //       termChildrenVisible: youtube.termChildrenVisible,
+  //       amountChildrenVisible: youtube.amountChildrenVisible
+  //     });
+  //   }
+  // }
+
   render() {
     return (
       <div className="post-form mb-3">
@@ -95,7 +112,7 @@ YoutubeSearchBar.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  youtubeSettings: state.setting.settings[0].youtube
+  settings: state.setting.settings
 });
 
 export default connect(
