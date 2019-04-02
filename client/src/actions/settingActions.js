@@ -18,20 +18,21 @@ export const getSettings = () => dispatch => {
     );
 };
 
-export const updateSettings = data => dispatch => {
+export const updateSettings = data => (dispatch, getState) => {
   //   console.log("actionCreator");
-  axios
-    .post(`api/settings/update/`, data)
-    .then(res =>
-      dispatch({
-        type: UPDATE_SETTINGS,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
+  console.log(getState);
+  // axios
+  //   .post(`api/settings/update/`, data)
+  //   .then(res =>
+  //     dispatch({
+  //       type: UPDATE_SETTINGS,
+  //       payload: res.data
+  //     })
+  //   )
+  //   .catch(err =>
+  //     dispatch({
+  //       type: GET_ERRORS,
+  //       payload: err.response.data
+  //     })
+  //   );
 };

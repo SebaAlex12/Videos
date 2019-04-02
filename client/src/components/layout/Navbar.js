@@ -7,7 +7,9 @@ import { logoutUser } from "../../actions/authActions";
 class Navbar extends Component {
   onLogoutClick(e) {
     e.preventDefault();
+    // console.log("navbar", this.props);
     this.props.logoutUser();
+    // this.props.history.push("/dashboard");
   }
   render() {
     const { isAuthenticated, user } = this.props.auth;

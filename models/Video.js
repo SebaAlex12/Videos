@@ -21,6 +21,9 @@ const VideoSchema = new Schema({
   description: {
     type: String,
     required: true
+  },
+  thumbnail: {
+    type: String
   }
 });
 

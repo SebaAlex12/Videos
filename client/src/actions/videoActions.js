@@ -62,7 +62,7 @@ export const addVideoFavourite = data => dispatch => {
 };
 
 export const deleteVideo = id => dispatch => {
-  console.log("cationreator");
+  // console.log("cationreator");
   axios
     .post(`api/videos/delete/${id}`)
     .then(res =>

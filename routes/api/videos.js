@@ -18,7 +18,8 @@ router.post(
       catId: req.body.catId,
       videoKey: req.body.videoKey,
       title: req.body.title,
-      description: req.body.description
+      description: req.body.description,
+      thumbnail: req.body.thumbnail
     };
 
     // Video.findOneAndUpdate(
@@ -32,7 +33,7 @@ router.post(
     //     video.save().then(data => res.json(data));
     //   })
     //   .catch(err => console.log(err));
-
+    // console.log(favListItem);
     const newVideo = new Video(favListItem);
     newVideo
       .save()

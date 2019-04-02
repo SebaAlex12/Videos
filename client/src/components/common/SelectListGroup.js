@@ -15,7 +15,6 @@ const SelectListGroup = ({ name, value, error, info, onChange, options }) => {
           "is-invalid": error
         })}
         name={name}
-        value={value}
         onChange={onChange}
       >
         {selectOptions}
@@ -28,7 +27,6 @@ const SelectListGroup = ({ name, value, error, info, onChange, options }) => {
 
 SelectListGroup.propTypes = {
   name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
   info: PropTypes.string,
   error: PropTypes.string,
   onChange: PropTypes.func.isRequired,

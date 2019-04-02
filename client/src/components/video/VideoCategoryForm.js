@@ -17,14 +17,16 @@ class VideoCategoryForm extends Component {
   onSubmit(e) {
     e.preventDefault();
     const { video } = this.props;
+    console.log("vidform", this.props);
     const data = {
       userId: this.props.userId,
       catId: this.state.catId,
       videoKey: video.id.videoId,
       title: video.snippet.title,
-      description: video.snippet.description
+      description: video.snippet.description,
+      thumbnail: video.snippet.thumbnails.medium.url
     };
-    console.log(data);
+    // console.log(data);
     this.props.addVideoFavourite(data);
   }
 
@@ -36,6 +38,8 @@ class VideoCategoryForm extends Component {
     const { categories } = this.props;
 
     // console.log(categories);
+    // console.log("vidcatform", this.state);
+
     let options = [{ label: "Wybierz kategorie", value: 0 }];
 
     categories.map(category => {
@@ -51,7 +55,6 @@ class VideoCategoryForm extends Component {
                 <SelectListGroup
                   placeholder="Kategoria"
                   name="catId"
-                  value={this.state.catId}
                   onChange={this.onChange}
                   options={options}
                   //   error={errors.catId}

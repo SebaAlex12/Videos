@@ -30,18 +30,18 @@ class VideoItemDelete extends Component {
     );
   }
   renderContent() {
-    console.log("viddeleterender", this.props);
+    // console.log("viddeleterender", this.props);
     return (
       <ModalDialog
         isOpen={true}
         title={"Usuń video"}
-        description={`Czy napewno chcesz usunąć film o nazwie`}
+        content={`Czy napewno chcesz usunąć film o nazwie`}
         actions={this.renderActions()}
       />
     );
   }
   render() {
-    console.log("render", this.props);
+    // console.log("render", this.props);
     return <div>{this.renderContent()}</div>;
   }
 }

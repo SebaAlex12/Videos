@@ -9,16 +9,16 @@ class YoutubeSearchBar extends Component {
   constructor(props) {
     super(props);
     const { youtubeSettings } = props;
-    console.log(youtubeSettings);
+    // console.log(youtubeSettings);
     this.state = {
-      // term: youtubeSettings.term ? youtubeSettings.term : "songs",
-      // maxResults: youtubeSettings.amount ? youtubeSettings.amount : 15,
-      // termUserVisible: youtubeSettings.visible.term,
-      // amountUserVisible: youtubeSettings.visible.amount
-      term: "songs",
-      maxResults: 5,
-      termUserVisible: true,
-      amountUserVisible: true
+      term: youtubeSettings.term ? youtubeSettings.term : "songs",
+      maxResults: youtubeSettings.amount ? youtubeSettings.amount : 15,
+      termUserVisible: youtubeSettings.visible.term,
+      amountUserVisible: youtubeSettings.visible.amount
+      // term: "songs",
+      // maxResults: 5,
+      // termUserVisible: true,
+      // amountUserVisible: true
       // errors: {}
     };
     this.onChange = this.onChange.bind(this);
@@ -95,7 +95,7 @@ YoutubeSearchBar.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  // youtubeSettings: state.setting.settings[0].youtube
+  youtubeSettings: state.setting.settings[0].youtube
 });
 
 export default connect(

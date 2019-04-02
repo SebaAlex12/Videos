@@ -8,15 +8,16 @@ class ModalDialog extends Component {
   }
 
   render() {
-    const { title, description } = this.props;
+    const { title, content } = this.props;
     return ReactDOM.createPortal(
       <Modal
         isOpen={this.props.isOpen}
         className={this.props.className}
+        size={this.props.size}
         onClick={e => e.stopPropagation()}
       >
         <ModalHeader>{title}</ModalHeader>
-        <ModalBody>{description}</ModalBody>
+        <ModalBody>{content}</ModalBody>
         <ModalFooter>{this.props.actions}</ModalFooter>
       </Modal>,
       document.querySelector("#modalDialog")
