@@ -15,7 +15,7 @@ class YoutubeSearchBar extends Component {
     const { searcher } = this.props;
 
     this.state = {
-      term: searcher.term ? searcher.term : "react redux",
+      term: searcher.term ? searcher.term : "react redux advanced",
       maxResults: searcher.maxResults ? searcher.maxResults : "5",
       termUserVisible: searcher.termUserVisible
         ? searcher.termUserVisible
@@ -28,15 +28,24 @@ class YoutubeSearchBar extends Component {
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
+  componentWillMount() {
+    this.props.getSettings();
+  }
+
   componentDidMount() {
     const { searcher } = this.props;
-
     const { youtube } = this.props.settings;
     console.log(youtube);
 
     const searchData = {
-      term: searcher.term ? searcher.term : "react redux",
-      maxResults: searcher.maxResults ? searcher.maxResults : "5"
+      term: searcher.term ? searcher.term : "react redux advanced",
+      maxResults: searcher.maxResults ? searcher.maxResults : "5",
+      termUserVisible: searcher.termUserVisible
+        ? searcher.termUserVisible
+        : true,
+      amountUserVisible: searcher.amountUserVisible
+        ? searcher.amountUserVisible
+        : true
     };
 
     this.props.youtubeList(searchData);
