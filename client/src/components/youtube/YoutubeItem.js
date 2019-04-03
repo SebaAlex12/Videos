@@ -10,7 +10,6 @@ class YoutubeItem extends Component {
 
   render() {
     const { video } = this.props;
-    console.log("youtubeitem", video);
 
     return (
       <div

@@ -3,38 +3,42 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import TextFieldGroup from "../common/TextFieldGroup";
+import { getSettings } from "../../actions/settingActions";
 import { youtubeList } from "../../actions/youtubeActions";
+import { setYoutubeSearcher } from "../../actions/youtubeSearcherActions";
 
 class YoutubeSearchBar extends Component {
   constructor(props) {
     super(props);
 
-    const { youtube } = this.props.settings;
+    this.props.getSettings();
+    const { searcher } = this.props;
 
     this.state = {
-      term: "react redux",
-      maxResults: 45,
-      termUserVisible: true,
-      amountUserVisible: true
-      // term: "songs",
-      // maxResults: 5,
-      // termUserVisible: true,
-      // amountUserVisible: true
-      // errors: {}
+      term: searcher.term ? searcher.term : "react redux",
+      maxResults: searcher.maxResults ? searcher.maxResults : "5",
+      termUserVisible: searcher.termUserVisible
+        ? searcher.termUserVisible
+        : true,
+      amountUserVisible: searcher.amountUserVisible
+        ? searcher.amountUserVisible
+        : true
     };
     this.onChange = this.onChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
-
-    // console.log(this.state);
   }
 
   componentDidMount() {
+    const { searcher } = this.props;
+
+    const { youtube } = this.props.settings;
+    console.log(youtube);
+
     const searchData = {
-      term: this.state.term,
-      maxResults: this.state.maxResults,
-      termUserVisible: this.state.termUserVisible,
-      amountUserVisible: this.state.amountUserVisible
+      term: searcher.term ? searcher.term : "react redux",
+      maxResults: searcher.maxResults ? searcher.maxResults : "5"
     };
+
     this.props.youtubeList(searchData);
   }
 
@@ -43,31 +47,14 @@ class YoutubeSearchBar extends Component {
 
     const searchData = {
       term: this.state.term,
-      maxResults: this.state.maxResults,
-      termUserVisible: this.state.termUserVisible,
-      amountUserVisible: this.state.amountUserVisible
+      maxResults: this.state.maxResults
     };
     this.props.youtubeList(searchData);
+    this.props.setYoutubeSearcher(searchData);
   }
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.settings) {
-  //     const { youtube } = nextProps.settings;
-  //     this.setState({
-  //       term: youtube.term,
-  //       amount: youtube.amount,
-  //       termUserVisible: true,
-  //       amountUserVisible: true,
-  //       childrenProtectionOn: youtube.childrenProtectionOn,
-  //       childrenProtectionOff: youtube.childrenProtectionOff,
-  //       termChildrenVisible: youtube.termChildrenVisible,
-  //       amountChildrenVisible: youtube.amountChildrenVisible
-  //     });
-  //   }
-  // }
 
   render() {
     return (
@@ -112,10 +99,11 @@ YoutubeSearchBar.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  settings: state.setting.settings
+  settings: state.setting.settings,
+  searcher: state.searcher.youtubeSearch
 });
 
 export default connect(
   mapStateToProps,
-  { youtubeList }
+  { getSettings, setYoutubeSearcher, youtubeList }
 )(YoutubeSearchBar);
