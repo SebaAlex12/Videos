@@ -16,7 +16,7 @@ class YoutubeSearchBar extends Component {
 
     this.state = {
       term: searcher.term ? searcher.term : "react redux advanced",
-      maxResults: searcher.maxResults ? searcher.maxResults : "5",
+      maxResults: searcher.maxResults ? searcher.maxResults : "25",
       termUserVisible: searcher.termUserVisible
         ? searcher.termUserVisible
         : true,
@@ -35,9 +35,34 @@ class YoutubeSearchBar extends Component {
   componentDidMount() {
     const { searcher } = this.props;
     const { youtube } = this.props.settings;
+
+    let searchData = {};
     console.log(youtube);
 
-    const searchData = {
+    // if (searcher && Object.keys(searcher).lenght > 0) {
+    //   searchData = {
+    //     term: searcher.term,
+    //     maxResults: searcher.maxResults,
+    //     termUserVisible: searcher.termUserVisible,
+    //     amountUserVisible: searcher.amountUserVisible
+    //   };
+    // } else if (youtube && Object.keys(youtube).lenght > 0) {
+    //   searchData = {
+    //     term: youtube.term,
+    //     maxResults: youtube.maxResults,
+    //     termUserVisible: youtube.termUserVisible,
+    //     amountUserVisible: youtube.amountUserVisible
+    //   };
+    // } else {
+    //   searchData = {
+    //     term: "react redux",
+    //     maxResults: "5",
+    //     termUserVisible: true,
+    //     amountUserVisible: true
+    //   };
+    // }
+
+    searchData = {
       term: searcher.term ? searcher.term : "react redux advanced",
       maxResults: searcher.maxResults ? searcher.maxResults : "5",
       termUserVisible: searcher.termUserVisible
