@@ -20,7 +20,7 @@ class YoutubeItemPopup extends Component {
   }
   renderContent() {
     const { key } = this.props.match.params;
-    const videoSrc = `https://youtube.com/embed/${key}`;
+    const videoSrc = `http://youtube.com/embed/${key}`;
 
     return (
       <ModalDialog
