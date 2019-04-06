@@ -36,7 +36,7 @@ export const updateSettings = data => (dispatch, getState) => {
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: null
       })
     );
 };

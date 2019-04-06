@@ -3,7 +3,6 @@ import { Router, Route } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
-import { getSettings } from "./actions/settingActions";
 import { Provider } from "react-redux";
 import history from "./history";
 import store from "./store";
@@ -21,6 +20,7 @@ import YoutubeItemPopup from "./components/youtube/YoutubeItemPopup";
 import VideoItemPopup from "./components/video/VideoItemPopup";
 import VideoMain from "./components/video/VideoMain";
 import VideoItemDelete from "./components/video/VideoItemDelete";
+import { getSettings } from "./actions/settingActions";
 
 import "./App.scss";
 
@@ -34,7 +34,7 @@ if (localStorage.jwtToken) {
   store.dispatch(setCurrentUser(decoded));
 
   // Set user Settings
-  // store.dispatch(getSettings());
+  store.dispatch(getSettings());
 
   // check for expire token
   const currentTime = Date.now() / 1000;

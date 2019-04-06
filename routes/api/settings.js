@@ -42,7 +42,7 @@ router.post(
           term: req.body.termUserVisible,
           amount: req.body.amountUserVisible
         },
-        childrenProtection: req.body.childrenProtectionOn,
+        childrenProtection: req.body.childrenProtection,
         childrenSettings: {
           visible: {
             term: req.body.termChildrenVisible,
@@ -52,10 +52,14 @@ router.post(
       }
     };
 
+    // console.log("apisettings", settData);
+
     Setting.findOne({ _id: req.params.id }).then(setting => {
       if (setting) {
         Setting.findOneAndReplace({ _id: req.params.id }, settData)
-          .then(data => res.json(data))
+          .then(data => {
+            return res.json(data);
+          })
           .catch(err => res.json(err));
       } else {
         const insertSetting = new Setting(settData);

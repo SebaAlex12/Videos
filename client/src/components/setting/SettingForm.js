@@ -14,7 +14,7 @@ class SettingForm extends Component {
       amount: 15,
       termUserVisible: true,
       amountUserVisible: true,
-      childrenProtectionOn: false,
+      childrenProtectionOn: true,
       childrenProtectionOff: false,
       termChildrenVisible: false,
       amountChildrenVisible: false,
@@ -37,12 +37,7 @@ class SettingForm extends Component {
       amountUserVisible: this.state.amountUserVisible
         ? this.state.amountUserVisible
         : false,
-      childrenProtectionOn: this.state.childrenProtectionOn
-        ? this.state.childrenProtectionOn
-        : false,
-      childrenProtectionOff: this.state.childrenProtectionOff
-        ? this.state.childrenProtectionOff
-        : false,
+      childrenProtection: this.state.childrenProtectionOn ? true : false,
       termChildrenVisible: this.state.termChildrenVisible
         ? this.state.termChildrenVisible
         : false,
@@ -50,6 +45,7 @@ class SettingForm extends Component {
         ? this.state.amountChildrenVisible
         : false
     };
+    // console.log("update", data);
     this.props.updateSettings(data);
   }
 
@@ -61,27 +57,30 @@ class SettingForm extends Component {
 
   componentDidMount() {
     this.props.getSettings();
+    console.log("didmount");
   }
 
   componentWillReceiveProps(nextProps) {
+    // console.log("resiveprops", nextProps);
     if (nextProps.settings) {
       console.log(nextProps);
       const { youtube } = nextProps.settings;
+
       this.setState({
         term: youtube.term,
         amount: youtube.amount,
-        termUserVisible: true,
-        amountUserVisible: true,
-        childrenProtectionOn: youtube.childrenProtectionOn,
-        childrenProtectionOff: youtube.childrenProtectionOff,
-        termChildrenVisible: youtube.termChildrenVisible,
-        amountChildrenVisible: youtube.amountChildrenVisible
+        termUserVisible: youtube.visible.term,
+        amountUserVisible: youtube.visible.amount,
+        childrenProtectionOn: youtube.childrenProtection ? true : false,
+        childrenProtectionOff: youtube.childrenProtection ? false : true,
+        termChildrenVisible: youtube.childrenSettings.visible.term,
+        amountChildrenVisible: youtube.childrenSettings.visible.amount
       });
     }
   }
 
   render() {
-    // console.log("rener", this.props);
+    console.log("rener", this.props);
 
     if (this.props.settings.youtube) {
     } else {
@@ -170,7 +169,6 @@ class SettingForm extends Component {
                       onChange={this.onChange}
                       id="childrenProtectionOn"
                       autoComplete="off"
-                      checked
                     />{" "}
                     Włącz
                   </label>
@@ -238,8 +236,7 @@ class SettingForm extends Component {
 
 const mapStateToProps = state => ({
   userId: state.auth.user.id,
-  settings: state.setting.settings,
-  state: state
+  settings: state.setting.settings
 });
 
 export default connect(
