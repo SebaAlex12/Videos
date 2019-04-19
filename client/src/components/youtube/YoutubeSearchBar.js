@@ -11,60 +11,25 @@ class YoutubeSearchBar extends Component {
   constructor(props) {
     super(props);
 
-    // this.props.getSettings();
-    const { searcher } = this.props;
-    const { settings } = this.props;
-
-    // console.log("searcher", searcher);
-    // console.log("settings", settings);
-
-    const defaultSettings = {
-      term: settings.youtube.term
-        ? settings.youtube.term
-        : "react redux advanced",
-      maxResult: settings.youtube.maxResult ? settings.youtube.maxResult : "5",
-      termUserVisible: settings.youtube.termUserVisible
-        ? settings.youtube.termUserVisible
-        : true,
-      amountUserVisible: settings.youtube.amountUserVisible
-        ? settings.youtube.amountUserVisible
-        : true
-    };
+    this.props.getSettings();
+    // const { searcher } = this.props;
+    // const { settings } = this.props;
 
     this.state = {
-      term: searcher.term ? searcher.term : defaultSettings.term,
-      maxResults: searcher.maxResults
-        ? searcher.maxResults
-        : defaultSettings.maxResult,
-      termUserVisible: searcher.termUserVisible
-        ? searcher.termUserVisible
-        : defaultSettings.termUserVisible,
-      amountUserVisible: searcher.amountUserVisible
-        ? searcher.amountUserVisible
-        : defaultSettings.amountUserVisible
+      term: "react redux advanced",
+      termUserVisible: true,
+      amountUserVisible: true,
+      maxResults: 5
     };
 
     this.onChange = this.onChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
-  componentWillMount() {}
-
   componentDidMount() {
     const { searcher } = this.props;
-    let searchData = {};
-
-    searchData = {
-      term: searcher.term ? searcher.term : "react redux advanced",
-      maxResults: searcher.maxResults ? searcher.maxResults : "5",
-      termUserVisible: searcher.termUserVisible
-        ? searcher.termUserVisible
-        : true,
-      amountUserVisible: searcher.amountUserVisible
-        ? searcher.amountUserVisible
-        : true
-    };
-
+    const searchData = this.state;
+    console.log("did mount", this.props);
     this.props.youtubeList(searchData);
   }
 
@@ -81,22 +46,6 @@ class YoutubeSearchBar extends Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-
-  // componentWillReceiveProps() {
-  //   const { settings } = this.props;
-  //   const { searcher } = this.props;
-
-  //   if (searcher.length === 0 && settings) {
-  //     console.log(settings);
-  //     this.setState({
-  //       term: settings.term,
-  //       maxResult: settings.maxResult,
-  //       termUderVisible: settings.termUserVisible,
-  //       amountUserVisible: settings.amountUserVisible
-  //     });
-  //   }
-  //   console.log(this.state);
-  // }
 
   render() {
     return (

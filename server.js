@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
+const cors = require("cors");
 
 const users = require("./routes/api/users");
 const youtubeVideos = require("./routes/api/youtube/videos");
@@ -10,6 +11,21 @@ const settings = require("./routes/api/settings");
 const videos = require("./routes/api/videos");
 
 const app = express();
+
+// Set up a whitelist and check against it:
+var whitelist = ["https://youtube.com"];
+var corsOptions = {
+  origin: function(origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  }
+};
+
+// Then pass them to cors:
+app.use(cors(corsOptions));
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
