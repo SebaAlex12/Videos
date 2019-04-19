@@ -13,7 +13,7 @@ const videos = require("./routes/api/videos");
 const app = express();
 
 // Set up a whitelist and check against it:
-// var whitelist = ["https://youtube.com"];
+// var whitelist = ["https://youtube.com", "https://cors-anywhere.herokuapp.com"];
 // var corsOptions = {
 //   origin: function(origin, callback) {
 //     if (whitelist.indexOf(origin) !== -1) {
@@ -25,11 +25,6 @@ const app = express();
 // };
 
 // app.use(cors(corsOptions));
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
-});
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));

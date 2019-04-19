@@ -20,7 +20,7 @@ class YoutubeItemPopup extends Component {
   }
   renderContent() {
     const { key } = this.props.match.params;
-    const videoSrc = `https://youtube.com/embed/${key}`;
+    const videoSrc = `https://cors-anywhere.herokuapp.com/https://youtube.com/embed/${key}`;
 
     return (
       <ModalDialog
