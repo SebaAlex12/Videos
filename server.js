@@ -13,19 +13,23 @@ const videos = require("./routes/api/videos");
 const app = express();
 
 // Set up a whitelist and check against it:
-var whitelist = ["https://youtube.com"];
-var corsOptions = {
-  origin: function(origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  }
-};
+// var whitelist = ["https://youtube.com"];
+// var corsOptions = {
+//   origin: function(origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   }
+// };
 
-// Then pass them to cors:
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
