@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import ModalDialog from "../common/ModalDialog";
 import VideoItemIframe from "../video/VideoItemIframe";
@@ -20,7 +21,13 @@ class YoutubeItemPopup extends Component {
   }
   renderContent() {
     const { key } = this.props.match.params;
-    const videoSrc = `https://cors-anywhere.herokuapp.com/https://youtube.com/embed/${key}`;
+    const videoSrc = `https://youtube.com/embed/${key}`;
+    console.log(videoSrc);
+    let src;
+
+    axios.get(videoSrc, { crossdomain: true }).then(resp => {
+      src = resp.data;
+    });
 
     return (
       <ModalDialog

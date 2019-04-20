@@ -13,7 +13,12 @@ const videos = require("./routes/api/videos");
 const app = express();
 
 // Set up a whitelist and check against it:
-// var whitelist = ["https://youtube.com", "https://cors-anywhere.herokuapp.com"];
+
+// var whitelist = [
+//   "https://youtube.com",
+//   "https://cors-anywhere.herokuapp.com",
+//   "http://localhost"
+// ];
 // var corsOptions = {
 //   origin: function(origin, callback) {
 //     if (whitelist.indexOf(origin) !== -1) {
@@ -23,8 +28,8 @@ const app = express();
 //     }
 //   }
 // };
-
-// app.use(cors(corsOptions));
+app.options("*", cors());
+app.use(cors());
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -63,8 +68,10 @@ if (process.env.NODE_ENV === "production") {
   // set static folder
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("X-FRAME-OPTIONS", "ALLOW-FROM *");
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
+app.get("*", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("X-FRAME-OPTIONS", "ALLOW-FROM *");
+});
