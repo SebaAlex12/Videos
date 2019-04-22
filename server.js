@@ -78,6 +78,10 @@ if (process.env.NODE_ENV === "production") {
 // });
 
 app.use(function(req, res, next) {
+  res.setHeader(
+    "Content-Security-Policy",
+    "script-src 'self' https://youtube.com"
+  );
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
