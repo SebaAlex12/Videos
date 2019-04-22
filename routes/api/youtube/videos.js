@@ -9,7 +9,7 @@ const axios = require("axios");
 router.get("/test", (req, res) => res.json({ msg: "youtube videos works" }));
 
 // @route GET api/youtube/videos
-// @desc test youtube videos route
+// @desc get youtube list
 // @access Public
 router.post(
   "/",
@@ -35,6 +35,21 @@ router.post(
         });
         res.json(videos);
       })
+      .catch(err => res.status(404).json({ errors: err }));
+  }
+);
+
+// @route GET api/youtube/videos/video_link cors restrictions
+// @desc get youtube video by link
+// @access Public
+router.post(
+  "/video_link",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    // console.log(req.body);
+    axios
+      .post(req.body.link)
+      .then(res => res.json({ data: res.data }))
       .catch(err => res.status(404).json({ errors: err }));
   }
 );

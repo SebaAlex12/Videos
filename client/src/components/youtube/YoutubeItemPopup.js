@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import axios from "axios";
 
 import ModalDialog from "../common/ModalDialog";
 import VideoItemIframe from "../video/VideoItemIframe";
+import { getYoutubeByLink, youtubeList } from "../../actions/youtubeActions";
 
 class YoutubeItemPopup extends Component {
   renderActions() {
@@ -22,12 +24,29 @@ class YoutubeItemPopup extends Component {
   renderContent() {
     const { key } = this.props.match.params;
     const videoSrc = `https://youtube.com/embed/${key}`;
-    console.log(videoSrc);
-    let src;
+    // console.log(videoSrc);
 
-    axios.get(videoSrc, { crossdomain: true }).then(resp => {
-      src = resp.data;
-    });
+    // const data = this.props.getYoutubeByLink({ link: videoSrc });
+
+    // console.log("data", data);
+
+    // console.log("ldldldldldl");
+
+    // axios
+    //   .get(videoSrc, {
+    //     method: "GET",
+    //     mode: "no-cors",
+    //     headers: {
+    //       "Access-Control-Allow-Origin": "*",
+    //       "Content-Type": "application/json"
+    //     },
+    //     withCredentials: true,
+    //     credentials: "same-origin"
+    //   })
+    //   .then(resp => {
+    //     let src = resp.data;
+    //     console.log("src", src);
+    //   });
 
     return (
       <ModalDialog
@@ -46,4 +65,7 @@ class YoutubeItemPopup extends Component {
   }
 }
 
-export default YoutubeItemPopup;
+export default connect(
+  null,
+  { getYoutubeByLink, youtubeList }
+)(YoutubeItemPopup);

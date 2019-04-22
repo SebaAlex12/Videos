@@ -71,7 +71,17 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
-app.get("*", (req, res) => {
+// app.get("*", (req, res) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Credentials", true);
+//   res.header("X-FRAME-OPTIONS", "ALLOW-FROM *");
+// });
+
+app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("X-FRAME-OPTIONS", "ALLOW-FROM *");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
 });

@@ -1,8 +1,13 @@
-import { GET_YOUTUBE_VIDEOS, VIDEO_LOADING } from "../actions/types";
+import {
+  GET_YOUTUBE_VIDEOS,
+  VIDEO_LOADING,
+  GET_YOUTUBE_VIDEO_BY_LINK
+} from "../actions/types";
 
 const initialState = {
   youtubeVideos: [],
   youtubeVideo: {},
+  yt: {},
   loading: false
 };
 
@@ -17,6 +22,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         youtubeVideos: action.payload,
+        loading: false
+      };
+    case GET_YOUTUBE_VIDEO_BY_LINK:
+      return {
+        ...state,
+        yt: action.payload,
         loading: false
       };
     default:
