@@ -15,12 +15,12 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    // const YOUTUBE_KEY = "AIzaSyCd6lBCGyrYYfG5xSwD2WWi7zdfVQDiS_0";
-    const YOUTUBE_KEY = "AIzaSyCG7SyjF4lB1Ekpoq-AGZ4uU0nqngR-xgo";
+    const YOUTUBE_KEY = "AIzaSyCd6lBCGyrYYfG5xSwD2WWi7zdfVQDiS_0";
+    // const YOUTUBE_KEY = "AIzaSyCG7SyjF4lB1Ekpoq-AGZ4uU0nqngR-xgo";
 
     const params = {
       part: "snippet",
-      maxResults: req.body.maxResults,
+      amount: req.body.amount,
       key: YOUTUBE_KEY,
       q: req.body.term
     };
@@ -46,11 +46,15 @@ router.post(
   "/video_link",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    // console.log(req.body);
+    // console.log("api cccc", req.body.link);
     axios
       .post(req.body.link)
-      .then(res => res.json({ data: res.data }))
-      .catch(err => res.status(404).json({ errors: err }));
+      .then(response => res.json(response.data))
+      .catch(err =>
+        res
+          .status(404)
+          .json({ errors: "youtube element have not  being found" })
+      );
   }
 );
 

@@ -78,7 +78,7 @@ if (process.env.NODE_ENV === "production") {
 // });
 
 app.use(function(req, res, next) {
-  res.setHeader(
+  res.header(
     "Content-Security-Policy",
     "script-src 'self' https://youtube.com"
   );
@@ -87,5 +87,7 @@ app.use(function(req, res, next) {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header("X-FRAME-OPTIONS", "ALLOW-FROM *");
   next();
 });

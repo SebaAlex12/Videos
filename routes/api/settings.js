@@ -33,22 +33,23 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     // prepare all data to save
+    // console.log(req.body);
     const settData = {
       // userId: req.body.userId,
       youtube: {
-        term: req.body.term,
-        amount: req.body.amount,
+        term: req.body.settings.term,
+        amount: req.body.settings.amount,
         visible: {
-          term: req.body.termUserVisible,
-          amount: req.body.amountUserVisible
-        },
-        childrenProtection: req.body.childrenProtection,
-        childrenSettings: {
-          visible: {
-            term: req.body.termChildrenVisible,
-            amount: req.body.amountChildrenVisible
-          }
+          term: true,
+          amount: true
         }
+        // childrenProtection: req.body.childrenProtection,
+        // childrenSettings: {
+        //   visible: {
+        //     term: req.body.termChildrenVisible,
+        //     amount: req.body.amountChildrenVisible
+        //   }
+        // }
       }
     };
 

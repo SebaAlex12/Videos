@@ -24,23 +24,23 @@ const SettingSchema = new Schema({
         type: Boolean,
         default: true
       }
-    },
-    childrenProtection: {
-      type: Boolean,
-      default: false
-    },
-    childrenSettings: {
-      visible: {
-        term: {
-          type: Boolean,
-          default: true
-        },
-        amount: {
-          type: Boolean,
-          default: true
-        }
-      }
     }
+    // childrenProtection: {
+    //   type: Boolean,
+    //   default: false
+    // },
+    // childrenSettings: {
+    //   visible: {
+    //     term: {
+    //       type: Boolean,
+    //       default: true
+    //     },
+    //     amount: {
+    //       type: Boolean,
+    //       default: true
+    //     }
+    //   }
+    // }
   }
 });
 

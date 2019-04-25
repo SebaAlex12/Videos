@@ -2,7 +2,7 @@ import axios from "axios";
 import {
   GET_YOUTUBE_VIDEOS,
   GET_ERRORS,
-  GET_YOUTUBE_VIDEO_BY_LINK
+  GET_YOUTUBE_VIDEO_STRING_BY_LINK
 } from "./types";
 
 export const youtubeList = searchData => dispatch => {
@@ -23,11 +23,12 @@ export const youtubeList = searchData => dispatch => {
 };
 
 export const getYoutubeByLink = data => dispatch => {
+  console.log("acion creator", data);
   axios
-    .post("/api/youtube/videos/video_link", data)
+    .post(`/api/youtube/videos/video_link`, data)
     .then(res =>
       dispatch({
-        type: GET_YOUTUBE_VIDEO_BY_LINK,
+        type: GET_YOUTUBE_VIDEO_STRING_BY_LINK,
         payload: res.data
       })
     )

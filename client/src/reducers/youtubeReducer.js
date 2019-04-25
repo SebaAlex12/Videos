@@ -1,7 +1,7 @@
 import {
   GET_YOUTUBE_VIDEOS,
   VIDEO_LOADING,
-  GET_YOUTUBE_VIDEO_BY_LINK
+  GET_YOUTUBE_VIDEO_STRING_BY_LINK
 } from "../actions/types";
 
 const initialState = {
@@ -24,7 +24,7 @@ export default function(state = initialState, action) {
         youtubeVideos: action.payload,
         loading: false
       };
-    case GET_YOUTUBE_VIDEO_BY_LINK:
+    case GET_YOUTUBE_VIDEO_STRING_BY_LINK:
       return {
         ...state,
         yt: action.payload,

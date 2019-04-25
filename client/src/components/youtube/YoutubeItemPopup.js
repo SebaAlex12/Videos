@@ -3,11 +3,20 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
 
+import isEmpty from "../../validation/is-empty";
 import ModalDialog from "../common/ModalDialog";
 import VideoItemIframe from "../video/VideoItemIframe";
 import { getYoutubeByLink, youtubeList } from "../../actions/youtubeActions";
 
 class YoutubeItemPopup extends Component {
+  constructor(props) {
+    super(props);
+
+    const { key } = this.props.match.params;
+    const videoSrc = `https://youtube.com/embed/${key}`;
+
+    this.props.getYoutubeByLink({ link: videoSrc });
+  }
   renderActions() {
     return (
       <React.Fragment>
@@ -24,11 +33,20 @@ class YoutubeItemPopup extends Component {
   renderContent() {
     const { key } = this.props.match.params;
     const videoSrc = `https://youtube.com/embed/${key}`;
+
+    // console.log(this.props);
+    // const videoSrc = {
+    //   data: null
+    // };
+    // if (!isEmpty(this.props.yt)) {
+    //   console.log(this.props.yt);
+    // }
+
+    // const videoSrc = !isEmpty(this.props.yt) ? [this.props.yt] : null;
+
     // console.log(videoSrc);
 
-    // const data = this.props.getYoutubeByLink({ link: videoSrc });
-
-    // console.log("data", data);
+    // const src = this.createCORSRequest("get", videoSrc);
 
     // console.log("ldldldldldl");
 
@@ -65,7 +83,11 @@ class YoutubeItemPopup extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  yt: state.youtube.yt
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { getYoutubeByLink, youtubeList }
 )(YoutubeItemPopup);
