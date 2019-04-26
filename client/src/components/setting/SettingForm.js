@@ -60,8 +60,26 @@ class SettingForm extends Component {
     };
 
     // console.log("update", data);
-    this.props.updateSettings(data);
+    console.log("submit return", this.props.updateSettings(data));
     this.setState({ data });
+    this.successInfoShow(data);
+  }
+
+  successInfoShow(data) {
+    const root = document.getElementById("root");
+    const app = document.querySelector(".App");
+    const message = document.createElement("div");
+    console.log("message", data.settings.term);
+    message.classList.add("message");
+    message.innerHTML =
+      " new settings: term - " +
+      data.settings.term +
+      ", amount - " +
+      data.settings.amount;
+    if (document.querySelector(".message") !== null) {
+      document.querySelector(".message").remove();
+    }
+    root.insertBefore(message, app);
   }
 
   // static getDerivedStateFromProps(props, state) {
