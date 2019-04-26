@@ -39,8 +39,10 @@ class YoutubeSearchBar extends Component {
   //       searcher: {
   //         term: props.settings.term,
   //         amount: props.settings.amount,
-  //         termVisible: true,
-  //         amountVisible: true
+  //         visible:{
+  //           termVisible: true,
+  //           amountVisible: true
+  //         }
   //       }
   //     };
   //   }

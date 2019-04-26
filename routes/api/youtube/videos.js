@@ -15,8 +15,9 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const YOUTUBE_KEY = "AIzaSyCd6lBCGyrYYfG5xSwD2WWi7zdfVQDiS_0";
+    // const YOUTUBE_KEY = "AIzaSyCd6lBCGyrYYfG5xSwD2WWi7zdfVQDiS_0";
     // const YOUTUBE_KEY = "AIzaSyCG7SyjF4lB1Ekpoq-AGZ4uU0nqngR-xgo";
+    const YOUTUBE_KEY = "AIzaSyCBTQHSbr4OUBbfIipfxtk2JojsGvGMKfE";
 
     const params = {
       part: "snippet",
