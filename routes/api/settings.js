@@ -59,14 +59,15 @@ router.post(
       if (setting) {
         Setting.findOneAndReplace({ _id: req.params.id }, settData)
           .then(data => {
-            return res.json(data);
+            return res.json(settData);
           })
           .catch(err => res.json(err));
       } else {
         const insertSetting = new Setting(settData);
+        console.log("update settings api new", settData);
         insertSetting
           .save()
-          .then(data => res.data(data))
+          .then(data => res.data(settData))
           .catch(err => res.json(err));
       }
     });
