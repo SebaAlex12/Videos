@@ -63,20 +63,23 @@ class YoutubeSearchBar extends Component {
 
   onFormSubmit(e) {
     e.preventDefault();
-
+    // console.log("submit", this.state);
     const searchData = {
-      term: this.state.seracher.term,
+      term: this.state.searcher.term,
       amount: this.state.searcher.amount
     };
     this.props.youtubeList(searchData);
     this.props.setYoutubeSearcher(searchData);
   }
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    console.log(e.target.name + " - " + e.target.value);
+    this.setState({
+      searcher: { ...this.state.searcher, [e.target.name]: e.target.value }
+    });
   }
 
   render() {
-    console.log("render");
+    console.log("render", this.state);
     const { searcher } = this.state;
     return (
       <div className="post-form mb-3">
