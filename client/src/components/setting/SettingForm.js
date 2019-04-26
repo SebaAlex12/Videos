@@ -71,8 +71,9 @@ class SettingForm extends Component {
     const message = document.createElement("div");
     console.log("message", data.settings.term);
     message.classList.add("message");
+    message.style.padding = "15px 10px 15px 10px";
     message.innerHTML =
-      " new settings: term - " +
+      " new settings saved: term - " +
       data.settings.term +
       ", amount - " +
       data.settings.amount;
@@ -80,6 +81,9 @@ class SettingForm extends Component {
       document.querySelector(".message").remove();
     }
     root.insertBefore(message, app);
+    setTimeout(function() {
+      document.querySelector(".message").style.display = "none";
+    }, 5000);
   }
 
   // static getDerivedStateFromProps(props, state) {
