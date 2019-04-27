@@ -6,6 +6,7 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import { getSettings } from "../../actions/settingActions";
 import { youtubeList } from "../../actions/youtubeActions";
 import { setYoutubeSearcher } from "../../actions/youtubeSearcherActions";
+import isEmpty from "../../validation/is-empty";
 
 class YoutubeSearchBar extends Component {
   constructor(props) {
@@ -50,11 +51,17 @@ class YoutubeSearchBar extends Component {
   // }
 
   componentDidMount() {
-    const searchData = this.props.settings;
-    console.log("did mount", this.props);
+    let searchData = this.props.settings;
+    if (!isEmpty(this.props.searcher)) {
+      searchData = this.props.searcher;
+    }
     if (searchData) {
       this.setState({
-        searcher: searchData
+        searcher: searchData,
+        visible: {
+          amount: true,
+          term: true
+        }
       });
     }
     this.props.setYoutubeSearcher(searchData);
@@ -66,7 +73,11 @@ class YoutubeSearchBar extends Component {
     // console.log("submit", this.state);
     const searchData = {
       term: this.state.searcher.term,
-      amount: this.state.searcher.amount
+      amount: this.state.searcher.amount,
+      visible: {
+        amount: true,
+        term: true
+      }
     };
     this.props.youtubeList(searchData);
     this.props.setYoutubeSearcher(searchData);
