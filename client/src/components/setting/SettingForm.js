@@ -13,19 +13,19 @@ class SettingForm extends Component {
     this.state = {
       userId: props.userId,
       settings: {
-        term: "songs",
-        amount: 15,
+        term: "pokemony trilers",
+        amount: 35,
         termVisible: true,
-        amountVisible: true
+        amountVisible: true,
       },
-      errors: {}
+      errors: {},
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     if (this.props.settings) {
       this.state = {
-        settings: this.props.settings
+        settings: this.props.settings,
       };
     }
 
@@ -55,8 +55,8 @@ class SettingForm extends Component {
           : false,
         amountVisible: this.state.settings.amountVisible
           ? this.state.settings.amountVisible
-          : false
-      }
+          : false,
+      },
     };
 
     // console.log("update", data);
@@ -81,7 +81,7 @@ class SettingForm extends Component {
       document.querySelector(".message").remove();
     }
     root.insertBefore(message, app);
-    setTimeout(function() {
+    setTimeout(function () {
       document.querySelector(".message").style.display = "none";
     }, 5000);
   }
@@ -103,7 +103,7 @@ class SettingForm extends Component {
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
 
     this.setState({
-      settings: { ...this.state.settings, [e.target.name]: value }
+      settings: { ...this.state.settings, [e.target.name]: value },
     });
 
     console.log("target all state", this.state);
@@ -191,12 +191,11 @@ class SettingForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   userId: state.auth.user.id,
-  settings: state.setting.settings.youtube
+  settings: state.setting.settings.youtube,
 });
 
-export default connect(
-  mapStateToProps,
-  { getSettings, updateSettings }
-)(SettingForm);
+export default connect(mapStateToProps, { getSettings, updateSettings })(
+  SettingForm
+);

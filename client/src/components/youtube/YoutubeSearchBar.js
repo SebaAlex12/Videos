@@ -17,13 +17,13 @@ class YoutubeSearchBar extends Component {
 
     this.state = {
       searcher: {
-        term: "react redux advanced",
-        amount: 5,
+        term: "pokemony trilers",
+        amount: 25,
         visible: {
           amount: true,
-          term: true
-        }
-      }
+          term: true,
+        },
+      },
     };
     console.log("constructor", this.props);
     this.onChange = this.onChange.bind(this);
@@ -60,9 +60,19 @@ class YoutubeSearchBar extends Component {
         searcher: searchData,
         visible: {
           amount: true,
-          term: true
-        }
+          term: true,
+        },
       });
+    } else {
+      // na sztywno
+      searchData = {
+        term: "pokemony trilers",
+        amount: 25,
+        visible: {
+          amount: true,
+          term: true,
+        },
+      };
     }
     this.props.setYoutubeSearcher(searchData);
     this.props.youtubeList(searchData);
@@ -76,8 +86,8 @@ class YoutubeSearchBar extends Component {
       amount: this.state.searcher.amount,
       visible: {
         amount: true,
-        term: true
-      }
+        term: true,
+      },
     };
     this.props.youtubeList(searchData);
     this.props.setYoutubeSearcher(searchData);
@@ -85,7 +95,7 @@ class YoutubeSearchBar extends Component {
   onChange(e) {
     console.log(e.target.name + " - " + e.target.value);
     this.setState({
-      searcher: { ...this.state.searcher, [e.target.name]: e.target.value }
+      searcher: { ...this.state.searcher, [e.target.name]: e.target.value },
     });
   }
 
@@ -130,15 +140,16 @@ class YoutubeSearchBar extends Component {
   }
 }
 YoutubeSearchBar.propTypes = {
-  youtubeList: PropTypes.func.isRequired
+  youtubeList: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   settings: state.setting.settings.youtube,
-  searcher: state.searcher.youtubeSearch
+  searcher: state.searcher.youtubeSearch,
 });
 
-export default connect(
-  mapStateToProps,
-  { getSettings, setYoutubeSearcher, youtubeList }
-)(YoutubeSearchBar);
+export default connect(mapStateToProps, {
+  getSettings,
+  setYoutubeSearcher,
+  youtubeList,
+})(YoutubeSearchBar);
