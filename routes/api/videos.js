@@ -52,7 +52,7 @@ router.get(
     // Video.findOne({ userId: "5c14e04189ac3d1014ecc169" })
     //   .then(data => res.json(data))
     //   .catch(err => res.status(404).json({ novideosfound: "novideosfound" }));
-    Video.find({ userId: "5c9492cd8cfeaa1de8734a53" })
+    Video.find()
       .then(data => res.json(data))
       .catch(err => res.status(404).json({ novideosfound: "novideosfound" }));
   }

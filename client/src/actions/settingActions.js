@@ -24,7 +24,7 @@ export const getSettings = () => (dispatch, getState) => {
 export const updateSettings = data => (dispatch, getState) => {
   const state = getState();
   const { settingsId } = state.auth.user;
-  // console.log(settingsId);
+  console.log('settings id',settingsId);
   axios
     .post(`api/settings/update/${settingsId}`, data)
     .then(res =>

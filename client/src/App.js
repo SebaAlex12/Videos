@@ -34,7 +34,7 @@ if (localStorage.jwtToken) {
   store.dispatch(setCurrentUser(decoded));
 
   // Set user Settings
-  store.dispatch(getSettings());
+  // store.dispatch(getSettings());
 
   // check for expire token
   const currentTime = Date.now() / 1000;

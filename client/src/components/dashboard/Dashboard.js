@@ -8,7 +8,7 @@ class Dashboard extends Component {
     if (this.props.auth.isAuthenticated === false) {
       this.props.history.push("/");
     }
-    this.props.getSettings();
+    // this.props.getSettings();
   }
   render() {
     return (

@@ -58,9 +58,8 @@ class SettingForm extends Component {
           : false,
       },
     };
-
-    // console.log("update", data);
-    console.log("submit return", this.props.updateSettings(data));
+    console.log("update", data);
+    this.props.updateSettings(data);
     this.setState({ data });
     this.successInfoShow(data);
   }
@@ -109,10 +108,6 @@ class SettingForm extends Component {
     console.log("target all state", this.state);
   }
 
-  componentDidMount() {
-    console.log("didmount");
-  }
-
   // componentWillReceiveProps(nextProps) {
   //   if (nextProps.settings) {
   //     console.log(nextProps);
@@ -128,14 +123,14 @@ class SettingForm extends Component {
   // }
 
   render() {
-    console.log("rener", this.props);
+    console.log("rener cc", this.props);
     // console.log("render state", this.state);
     const { settings } = this.state;
 
-    if (this.props.settings) {
-    } else {
-      return "loading...";
-    }
+    // if (this.props.settings) {
+    // } else {
+    //   return "loading...";
+    // }
 
     return (
       <div className="post-form mb-3">
@@ -180,7 +175,7 @@ class SettingForm extends Component {
                   </label>
                 </div>
               </div>
-              <button type="submit" className="btn btn-dark float-right">
+              <button onClick={this.onSubmit} type="submit" className="btn btn-dark float-right">
                 Zapisz
               </button>
             </form>

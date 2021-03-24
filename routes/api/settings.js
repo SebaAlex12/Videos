@@ -53,25 +53,36 @@ router.post(
       }
     };
 
-    // console.log("apisettings", settData);
+    console.log("apisettings", settData);
 
-    Setting.findOne({ _id: req.params.id }).then(setting => {
-      if (setting) {
-        Setting.findOneAndReplace({ _id: req.params.id }, settData)
-          .then(data => {
-            return res.json(settData);
-          })
-          .catch(err => res.json(err));
-      } else {
-        const insertSetting = new Setting(settData);
-        console.log("update settings api new", settData);
-        insertSetting
-          .save()
-          .then(data => res.data(settData))
-          .catch(err => res.json(err));
+    const sett = new Setting(settData);
+    sett.save()
+    .then(
+      data => {
+        return res.status("200").json({data:{message:`wszystko jest ok: ${data}`}});
       }
+    )
+    .catch(error => {
+      return res.status("500").json({data:{message:`something went wrong : ${error}`}})
     });
-  }
-);
+
+    // Setting.findOne({ _id: req.params.id }).then(setting => {
+      // if (setting) {
+        // Setting.save({ _id: req.params.id }, settData)
+        //   .then(data => {
+        //     return res.json(settData);
+        //   })
+        //   .catch(err => res.json(err));
+      // } else {
+      //   const insertSetting = new Setting(settData);
+      //   console.log("update settings api new", settData);
+      //   insertSetting
+      //     .save()
+      //     .then(data => res.data(settData))
+      //     .catch(err => res.json(err));
+      // }
+    });
+  // }
+// );
 
 module.exports = router;

@@ -11,8 +11,8 @@ import isEmpty from "../../validation/is-empty";
 class YoutubeSearchBar extends Component {
   constructor(props) {
     super(props);
-    this.props.getSettings();
-    console.log("get settings constructor", this.props.getSettings());
+    // this.props.getSettings();
+    // console.log("get settings constructor", this.props.getSettings());
     // console.log('constructor props', this.props)
 
     this.state = {
