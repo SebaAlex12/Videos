@@ -8,7 +8,7 @@ class SettingForm extends Component {
   constructor(props) {
     super(props);
 
-    this.props.getSettings();
+    // this.props.getSettings();
 
     this.state = {
       userId: props.userId,
